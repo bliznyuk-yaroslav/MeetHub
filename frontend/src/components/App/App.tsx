@@ -9,7 +9,7 @@ import PrivateRoute from '../PrivateRoute'
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'))
 const RegisterPage = lazy(() => import('../../pages/RegisterPage/RegisterPage'))
 const RoomsPage = lazy(() => import('../../pages/Rooms/RoomsPage'))
-const RoomDetailsPage = lazy(() => import('../../pages/RoomsPage.module/RoomDetailsPage'))
+const RoomDetailsPage = lazy(() => import('../RoomsDetails/RoomDetails'))
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'))
 
 

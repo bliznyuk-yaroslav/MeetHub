@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import type { AppDispatch } from '../store'
 
 export const apiClient = axios.create({
-  baseURL: (import.meta as any).env?.VITE_API_URL || 'http://localhost:3000',
+  baseURL: "https://meethub-kc2v.onrender.com/",
   headers: { 'Content-Type': 'application/json' },
 })
 

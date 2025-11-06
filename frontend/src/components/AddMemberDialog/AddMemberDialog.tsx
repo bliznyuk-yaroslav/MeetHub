@@ -1,47 +1,101 @@
-import { useState } from 'react'
-import Modal from '../Modal/Modal'
+"use client";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Box,
+  Typography,
+} from "@mui/material";
 
 type Props = {
-  open: boolean
-  onClose: () => void
-  onAdd: (payload: { email: string; role: 'Admin' | 'User' }) => Promise<void> | void
-}
+  open: boolean;
+  onClose: () => void;
+  onAdd: (payload: { email: string; role: "Admin" | "User" }) => Promise<void> | void;
+};
 
 export default function AddMemberDialog({ open, onClose, onAdd }: Props) {
-  const [email, setEmail] = useState('')
-  const [role, setRole] = useState<'Admin' | 'User'>('User')
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState<"Admin" | "User">("User");
 
   const handleSubmit = async () => {
-    await onAdd({ email, role })
-    setEmail('')
-    setRole('User')
-  }
+    await onAdd({ email, role });
+    setEmail("");
+    setRole("User");
+  };
+
+  const isDisabled = !email.trim();
 
   return (
-    <Modal
+    <Dialog
       open={open}
       onClose={onClose}
-      title={<>Add member</>}
-      footer={
-        <>
-          <button className="btn" onClick={onClose}>Cancel</button>
-          <button className="btn btn--primary" onClick={handleSubmit} disabled={!email.trim()}>Add</button>
-        </>
-      }
+      fullWidth
+      maxWidth="sm"
+      PaperProps={{
+        sx: { borderRadius: 3, p: 1 },
+      }}
     >
-      <div className="grid" style={{gap: 12}}>
-        <label className="label">
-          <span>Email</span>
-          <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </label>
-        <label className="label">
-          <span>Role</span>
-          <select className="input" value={role} onChange={(e) => setRole(e.target.value as 'Admin' | 'User')}>
-            <option value="Admin">Admin</option>
-            <option value="User">User</option>
-          </select>
-        </label>
-      </div>
-    </Modal>
-  )
+      <DialogTitle>
+        <Typography variant="h6" fontWeight="600">
+          Add Member
+        </Typography>
+      </DialogTitle>
+
+      <DialogContent>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            mt: 1,
+          }}
+        >
+          <TextField
+            label="Email"
+            type="email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+            required
+          />
+
+          <FormControl fullWidth>
+            <InputLabel>Role</InputLabel>
+            <Select
+              value={role}
+              label="Role"
+              onChange={(e) => setRole(e.target.value as "Admin" | "User")}
+            >
+              <MenuItem value="Admin">Admin</MenuItem>
+              <MenuItem value="User">User</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </DialogContent>
+
+      <DialogActions sx={{ px: 3, pb: 2 }}>
+        <Button variant="text" color="inherit" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+          disabled={isDisabled}
+          sx={{ textTransform: "none", fontWeight: 500 }}
+        >
+          Add
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 }

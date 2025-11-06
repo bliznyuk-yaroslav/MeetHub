@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3000'
+const API_URL = "https://meethub-kc2v.onrender.com"
 const api = axios.create({ baseURL: API_URL, headers: { 'Content-Type': 'application/json' } })
 
 export const fetchBookingsThunk = createAsyncThunk(

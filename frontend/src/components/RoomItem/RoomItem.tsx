@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import styles from './RoomItem.module.scss'
+import s from './RoomItem.module.scss'
 import { useNavigate } from 'react-router-dom'
 
 type Props = {
@@ -17,29 +17,28 @@ export default function RoomItem({ id, name, description, role, onDelete }: Prop
   
   return (
     <li
-      className={styles.item}
+      className={s.item}
       onClick={goToDetails}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === 'Enter') goToDetails() }}
     >
-      <div className={styles.row}>
-        <div className={styles.info}>
-          <div className={styles.name}>{name}</div>
-          {description && <div className={styles.desc}>{description}</div>}
-          {role && <div className={styles.role}>Role: {role}</div>}
+      <div className={s.row}>
+        <div className={s.info}>
+          <div className={s.name}>{name}</div>
+          {description && <div className={s.desc}>{description}</div>}
+          {role && <div className={s.role}>Role: {role}</div>}
         </div>
         {role === 'Admin' && onDelete && (
-          <div className={styles.actions}>
+          <div className={s.actions}>
             <Button
-  className={styles.deleteBtn}
-  variant="outlined"
-  color="error"
-  aria-label="Delete room"
-  onClick={(e) => { e.stopPropagation(); onDelete(id) }}
->
-  Delete
-</Button>
+             className={s.deleteBtn}
+             variant="outlined"
+             color="error"
+             aria-label="Delete room"
+             onClick={(e) => { e.stopPropagation(); onDelete(id) }}>
+                     Delete
+            </Button>
           </div>
         )}
       </div>

@@ -6,11 +6,11 @@ import { selectBookings, selectBookingsError, selectBookingsLoading } from '../.
 import { fetchBookingsThunk, createBookingThunk, updateBookingThunk, deleteBookingThunk, joinBookingThunk, leaveBookingThunk } from '../../redux/bookings/operations'
 import { addMemberThunk, updateRoomThunk } from '../../redux/rooms/operations'
 import { selectRooms } from '../../redux/rooms/selectors'
-import AddMemberDialog from '../../components/AddMemberDialog/AddMemberDialog'
+import AddMemberDialog from '../AddMemberDialog/AddMemberDialog'
 import Button from '@mui/material/Button'
-import BookingList from '../../components/BookingList/BookingList'
-import BookingModal from '../../components/BookingModal/BookingModal'
-import EditRoomModal from '../../components/EditRoomModal/EditRoomModal'
+import BookingList from '../BookingList/BookingList'
+import BookingModal from '../BookingModal/BookingModal'
+import EditRoomModal from '../EditRoomModal/EditRoomModal'
 import dayjs from 'dayjs'
 
 export default function RoomDetailsPage() {
@@ -31,7 +31,6 @@ export default function RoomDetailsPage() {
 
   const [openMember, setOpenMember] = useState(false)
 
-  // room edit modal state
   const [roomName, setRoomName] = useState('')
   const [roomDesc, setRoomDesc] = useState('')
   const [editRoomOpen, setEditRoomOpen] = useState(false)

@@ -41,7 +41,6 @@ export const store = configureStore({
     }),
 })
 
-// attach axios interceptors (401 -> logout, etc.)
 setupAxiosInterceptors(store)
 
 export const persistor = persistStore(store)
