@@ -1,3 +1,4 @@
+import { Button } from '@mui/material'
 import styles from './RoomItem.module.scss'
 import { useNavigate } from 'react-router-dom'
 
@@ -30,12 +31,15 @@ export default function RoomItem({ id, name, description, role, onDelete }: Prop
         </div>
         {role === 'Admin' && onDelete && (
           <div className={styles.actions}>
-            <button
-              className={styles.deleteBtn}
-              onClick={(e) => { e.stopPropagation(); onDelete(id) }}
-            >
-              Delete
-            </button>
+            <Button
+  className={styles.deleteBtn}
+  variant="outlined"
+  color="error"
+  aria-label="Delete room"
+  onClick={(e) => { e.stopPropagation(); onDelete(id) }}
+>
+  Delete
+</Button>
           </div>
         )}
       </div>
