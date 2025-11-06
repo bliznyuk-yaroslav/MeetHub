@@ -1,0 +1,38 @@
+.header {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(180%) blur(6px);
+ 
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0 0 12px 12px;
+}
+
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.btn{
+  border-radius: 6px;
+  background-color: transparent;
+  color: #b3e6ff;
+  border: 1px solid #b3e6ff;
+  padding: 10px 20px;
+}
+.btn:hover{
+  background-color: #b3e6ff;
+  color: #2563eb;
+}

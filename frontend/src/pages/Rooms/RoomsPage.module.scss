@@ -1,0 +1,75 @@
+.container {
+  @include flex-center(column, 12px);
+  align-items: stretch;
+}
+
+.header {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.createBtn {
+  appearance: none;
+  border: none;
+  border-radius: $radius;
+  padding: 10px 14px;
+  background: $primary;
+  color: #fff;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.item {
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: $radius;
+  background: rgba(255,255,255,0.03);
+  box-shadow: $shadow;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6px;
+  a { color: $text; }
+}
+
+.desc {
+  opacity: .8;
+}
+
+.role {
+  opacity: .7;
+  font-size: 12px;
+}
+
+.error {
+  color: #ef4444;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.deleteBtn {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: $text;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
