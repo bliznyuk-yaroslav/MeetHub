@@ -9,24 +9,31 @@
 
 .modal {
   width: min(560px, 92vw);
+  background: #ffffff;
+  color: #0f172a;
   border-radius: 12px;
- 
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  overflow: hidden;
+  max-height: 90vh;
 }
 
 .header {
   padding: 16px 20px;
   font-weight: 600; 
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-.body { padding: 16px 20px; }
+.body { 
+  padding: 16px 20px; 
+  background: #fff; 
+}
 
 .footer {
   padding: 12px 20px 16px;
   display: flex;
   gap: 10px;
   justify-content: flex-end;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #fff;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
 }

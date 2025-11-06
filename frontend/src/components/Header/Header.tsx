@@ -28,8 +28,8 @@ export default function Header() {
           </>
         ) : (
           <>
-            <Button component={NavLink} to="/rooms" variant="text" color="primary">Rooms</Button>
-            <Button onClick={onLogout} variant="outlined" color="inherit">Logout</Button>
+            <Button component={NavLink} to="/rooms" variant="outlined" color="primary">Rooms</Button>
+            <Button onClick={onLogout} variant="outlined" color="error">Logout</Button>
           </>
         )}
       </nav>

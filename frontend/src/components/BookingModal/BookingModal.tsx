@@ -1,6 +1,7 @@
 import Modal from '../Modal/Modal'
 import styles from './BookingModal.module.scss'
 import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 
 type Props = {
   open: boolean
@@ -30,18 +31,35 @@ export default function BookingModal({ open, editId, start, end, description, er
       }
     >
       <div className={styles.content}>
-        <label className="label">
-          <span>Start</span>
-          <input className="input" type="datetime-local" value={start} onChange={(e) => onChangeStart(e.target.value)} step={900} />
-        </label>
-        <label className="label">
-          <span>End</span>
-          <input className="input" type="datetime-local" value={end} onChange={(e) => onChangeEnd(e.target.value)} step={900} />
-        </label>
-        <label className="label">
-          <span>Description</span>
-          <input className="input" value={description} onChange={(e) => onChangeDescription(e.target.value)} />
-        </label>
+        <div className={styles.grid}>
+          <TextField
+            label="Start"
+            type="datetime-local"
+            value={start}
+            onChange={(e) => onChangeStart(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ step: 900 }}
+            fullWidth
+          />
+          <TextField
+            label="End"
+            type="datetime-local"
+            value={end}
+            onChange={(e) => onChangeEnd(e.target.value)}
+            InputLabelProps={{ shrink: true }}
+            inputProps={{ step: 900 }}
+            fullWidth
+          />
+        </div>
+
+        <TextField
+          label="Description"
+          value={description}
+          onChange={(e) => onChangeDescription(e.target.value)}
+          placeholder="Optional description"
+          fullWidth
+        />
+
         {error && <p className={styles.error}>{error}</p>}
       </div>
     </Modal>

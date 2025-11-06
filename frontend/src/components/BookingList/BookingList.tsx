@@ -26,7 +26,6 @@ export default function BookingList({ bookings, onEdit, onDelete, canManage = tr
             {b.description && <div style={{ opacity: 0.8 }}>{b.description}</div>}
           </div>
           <div className={styles.actions}>
-            {/* Participation action always available for room members */}
             {b.joined ? (
               <Button variant="outlined" color="inherit" onClick={() => onLeave(b.id)}>Leave</Button>
             ) : (
@@ -34,7 +33,7 @@ export default function BookingList({ bookings, onEdit, onDelete, canManage = tr
             )}
             {canManage && (
               <>
-                <Button variant="text" onClick={() => onEdit(b)}>Edit</Button>
+                <Button variant="outlined" onClick={() => onEdit(b)}>Edit</Button>
                 <Button variant="outlined" color="error" onClick={() => onDelete(b.id)}>Delete</Button>
               </>
             )}
