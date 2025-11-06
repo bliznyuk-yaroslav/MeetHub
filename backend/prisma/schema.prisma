@@ -20,6 +20,7 @@ model User {
   roomsOwned   Room[]        @relation("RoomOwner")
   memberships  RoomMember[]
   bookings     Booking[]
+  bookingJoins BookingParticipant[]
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 }
@@ -59,6 +60,19 @@ model Booking {
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  participants BookingParticipant[]
 
   @@index([roomId, start, end])
 }
+
+model BookingParticipant {
+  id         Int      @id @default(autoincrement())
+  booking    Booking  @relation(fields: [bookingId], references: [id])
+  bookingId  Int
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  joinedAt   DateTime @default(now())
+
+  @@unique([bookingId, userId])
+}
+

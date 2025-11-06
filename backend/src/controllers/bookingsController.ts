@@ -111,3 +111,52 @@ export const deleteBooking = async (req: Request, res: Response) => {
     return res.status(500).json({ message: 'Delete booking failed', error });
   }
 };
+
+export const joinBooking = async (req: Request, res: Response) => {
+  try {
+    const user = (req as any).user as { id: number };
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ message: 'Invalid booking id' });
+
+    const existing = await prisma.booking.findUnique({ where: { id } });
+    if (!existing) return res.status(404).json({ message: 'Booking not found' });
+
+    // Any room member can join
+    const membership = await prisma.roomMember.findUnique({
+      where: { roomId_userId: { roomId: existing.roomId, userId: user.id } },
+    });
+    if (!membership) return res.status(403).json({ message: 'Forbidden' });
+
+    await prisma.bookingParticipant.upsert({
+      where: { bookingId_userId: { bookingId: id, userId: user.id } },
+      update: {},
+      create: { bookingId: id, userId: user.id },
+    });
+
+    return res.status(200).json({ ok: true });
+  } catch (error) {
+    return res.status(500).json({ message: 'Join booking failed', error });
+  }
+};
+
+export const leaveBooking = async (req: Request, res: Response) => {
+  try {
+    const user = (req as any).user as { id: number };
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ message: 'Invalid booking id' });
+
+    const existing = await prisma.booking.findUnique({ where: { id } });
+    if (!existing) return res.status(404).json({ message: 'Booking not found' });
+
+    // Any room member can leave
+    const membership = await prisma.roomMember.findUnique({
+      where: { roomId_userId: { roomId: existing.roomId, userId: user.id } },
+    });
+    if (!membership) return res.status(403).json({ message: 'Forbidden' });
+
+    await prisma.bookingParticipant.deleteMany({ where: { bookingId: id, userId: user.id } });
+    return res.status(200).json({ ok: true });
+  } catch (error) {
+    return res.status(500).json({ message: 'Leave booking failed', error });
+  }
+};

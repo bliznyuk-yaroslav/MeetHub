@@ -149,7 +149,11 @@ export const listRoomBookings = async (req: Request, res: Response) => {
     if (!member) return res.status(403).json({ message: 'Forbidden' });
 
     const bookings = await prisma.booking.findMany({ where: { roomId }, orderBy: { start: 'asc' } });
-    return res.status(200).json(bookings);
+    const ids = bookings.map((b) => b.id);
+    const joins = await prisma.bookingParticipant.findMany({ where: { bookingId: { in: ids }, userId: user.id } });
+    const joinedSet = new Set(joins.map((j) => j.bookingId));
+    const shaped = bookings.map((b) => ({ ...b, joined: joinedSet.has(b.id) }));
+    return res.status(200).json(shaped);
   } catch (error) {
     return res.status(500).json({ message: 'List bookings failed', error });
   }
